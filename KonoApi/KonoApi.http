@@ -1,0 +1,6 @@
+@KonoApi_HostAddress = http://localhost:5102
+
+GET {{KonoApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
