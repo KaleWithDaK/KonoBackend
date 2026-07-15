@@ -1,0 +1,29 @@
+services:
+  database:
+    image: postgres:18.4
+    container_name: kono-db
+    environment:
+      POSTGRES_USER: kono
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: kono
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: kono-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@pg.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8080:80"
+    depends_on:
+      - database
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  postgres_data:
+  pgadmin_data:
